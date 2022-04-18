@@ -2,7 +2,7 @@
 
 body{
     height: 100vh;
-    background: url(./asset/bgbg.png) no-repeat;
+    background: url(./assets/bgbg.png) no-repeat;
     background-size: cover;
     overflow: hidden;
 }
@@ -13,15 +13,35 @@ a{
 
 .about{
     font-family: 'Pretendard';
-    font-weight: 900;
+    font-weight: 700;
     margin-top: 50px;
     text-align: center;
 }
 
-.title{
+.main-title{
     font-family: 'Pretendard';
     margin-top: -50px;
     color: #FFFFFF;
-    font-size: 85px;
+    font-size: 80px;
     font-weight: 900;
+}
+
+.sub-title{
+    position: absolute;
+    top: 96px;
+    left: 230px;
+    font-family: 'Pretendard';
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 700;
+    text-align: left;
+}
+
+footer{
+    color: #FFFFFF;
+    font-family: 'Pretendard';
+    font-weight: 700;
+    text-align: right;
+    font-size: 10px;
 }
