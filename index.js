@@ -1,4 +1,4 @@
-import * as THREE from './build/three.module.js';
+import * as THREE from 'three';
 import { ARButton } from './jsm/webxr/ARButton.js';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
@@ -13,7 +13,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
     init();
     animate();
-    loader();
 
     function init() {
 
@@ -24,9 +23,20 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
         camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-        const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
-        light.position.set( 0.5, 1, 0.25 );
-        scene.add( light );
+        const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+        hemiLight.position.set( 0, 20, 0 );
+        scene.add( hemiLight );
+
+        const dirLight = new THREE.DirectionalLight( 0xffffff );
+        dirLight.position.set( - 3, 10, - 10 );
+        dirLight.castShadow = true;
+        dirLight.shadow.camera.top = 2;
+        dirLight.shadow.camera.bottom = - 2;
+        dirLight.shadow.camera.left = - 2;
+        dirLight.shadow.camera.right = 2;
+        dirLight.shadow.camera.near = 0.1;
+        dirLight.shadow.camera.far = 40;
+        scene.add( dirLight );
 
         //
 
@@ -38,22 +48,27 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
         //
 
-        document.body.appendChild( ARButton.createButton( renderer, { requiredFeatures: [ 'hit-test' ] } ) );
+        document.body.appendChild( ARButton.createButton( renderer ) );
 
         //
 
-        const geometry = new THREE.CylinderGeometry( 0.1, 0.1, 0.2, 32 ).translate( 0, 0.1, 0 );
+        
+        const gltfLoader = new GLTFLoader();
+        const url = './assets/portal.gltf';
+        var model = new THREE.Object3D();
+
+        gltfLoader.load( url, ( gltf ) => {
+                model = gltf.scene;
+                model.name = "model";
+            }
+        );
 
         function onSelect() {
 
             if ( reticle.visible ) {
-
-                const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-                const mesh = new THREE.Mesh( geometry, material );
-                reticle.matrix.decompose( mesh.position, mesh.quaternion, mesh.scale );
-                mesh.scale.y = Math.random() * 2 + 1;
-                scene.add( mesh );
-
+                model.scale.set(2,2,2)
+                reticle.matrix.decompose( model.position, model.quaternion, model.scale );
+                scene.add(model);
             }
 
         }
@@ -74,18 +89,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
         window.addEventListener( 'resize', onWindowResize );
 
-    }
-
-    function loader() {
-        const loader = new GLTFLoader();
-        const url = './assets/seokga.glb';
-        loader.load( 
-            url,
-            (glb) => {
-                const root = glb.scene;
-                this_scene.add(root);
-            }
-        )
     }
 
     function onWindowResize() {
