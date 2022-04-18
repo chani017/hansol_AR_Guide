@@ -1,0 +1,15 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body{
+    height: 100vh;
+    background: url(./asset/bgbg.png) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.text{
+    font-family: 'Pretendard';
+    color: #FFFFFF;
+    font-size: 25px;
+    font-weight: 700;
+}
