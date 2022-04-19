@@ -65,7 +65,7 @@ class ARButton {
 
 				currentSession.removeEventListener( 'end', onSessionEnded );
 
-				button.textContent = 'START AR';
+				button.textContent = 'AR 시작하기';
 				sessionInit.domOverlay.root.style.display = 'none';
 
 				currentSession = null;
