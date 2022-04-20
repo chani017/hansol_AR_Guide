@@ -24,7 +24,7 @@ import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 
         camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-        const light = new THREE.AmbientLight(0xffffff, 4);
+        light = new THREE.AmbientLight(0xffffff, 4);
         scene.add(light);
 
         //
