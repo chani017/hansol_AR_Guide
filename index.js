@@ -68,7 +68,7 @@ import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
             if ( reticle.visible ) {
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
                 model.rotation.y = Math.PI / 2;
-                model.scale.set(1, 1, 1);
+                model.scale.set(0.3, 0.3, 0.3);
                 scene.add(model);
             }
 
