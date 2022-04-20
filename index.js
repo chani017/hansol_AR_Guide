@@ -54,7 +54,7 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
         
         const gltfLoader = new GLTFLoader();
-        const url = './assets/portal.gltf';
+        const url = './assets/models/portal.gltf';
         var model = new THREE.Object3D();
 
         gltfLoader.load( url, ( gltf ) => {

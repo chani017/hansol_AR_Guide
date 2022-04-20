@@ -2,14 +2,30 @@
 
 body{
     height: 100vh;
-    background: url(./assets/bgbg.png) no-repeat;
+    background: url(./assets/images/background.png) no-repeat;
     background-size: cover;
     overflow: hidden;
+}
+
+.back-button{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.about{
+    font-family: 'Pretendard';
+    color: #FFFFFF;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 20px;
 }
 
 .text{
     font-family: 'Pretendard';
     color: #FFFFFF;
-    font-size: 25px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 500;
 }
