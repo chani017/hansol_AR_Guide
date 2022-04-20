@@ -54,7 +54,7 @@ import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
         //
 
         const gltfLoader = new GLTFLoader();
-        const url = './assets/models/scene.gltf';
+        const url = './assets/models/portal.gltf';
         var model = new THREE.Object3D();
 
         gltfLoader.load( url, ( gltf ) => {
@@ -76,7 +76,7 @@ import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 
         dracoLoader.setDecoderPath('./draco/')
         gltfLoader.setDRACOLoader(dracoLoader)       
-        
+
         }
 
         controller = renderer.xr.getController( 0 );
