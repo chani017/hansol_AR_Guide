@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { ARButton } from './jsm/webxr/ARButton.js';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 
     let container;
     let camera, scene, renderer;
@@ -52,7 +53,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
         //
 
-        
         const gltfLoader = new GLTFLoader();
         const url = './assets/models/scene.gltf';
         var model = new THREE.Object3D();
@@ -68,9 +68,15 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
             if ( reticle.visible ) {
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
                 model.rotation.y = Math.PI / 2;
+                model.scale.set(1, 1, 1);
                 scene.add(model);
             }
 
+        const dracoLoader = new DRACOLoader()
+
+        dracoLoader.setDecoderPath('./draco/')
+        gltfLoader.setDRACOLoader(dracoLoader)       
+        
         }
 
         controller = renderer.xr.getController( 0 );
