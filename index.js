@@ -66,8 +66,8 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         function onSelect() {
 
             if ( reticle.visible ) {
-                model.scale.set(2,2,2)
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
+                model.rotation.y = Math.PI / 2;
                 scene.add(model);
             }
 
