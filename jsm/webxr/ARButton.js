@@ -12,18 +12,28 @@ class ARButton {
 				overlay.style.display = 'none';
 				document.body.appendChild( overlay );
 
-				const svg = document.createElementNS( '.assets/icons/arrow-left-solid.svg', 'svg' );
+				const svg = document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
 				svg.setAttribute( 'width', 38 );
 				svg.setAttribute( 'height', 38 );
 				svg.style.position = 'absolute';
-				svg.style.left = '25px';
-				svg.style.top = '25px';
+				svg.style.left = '20px';
+				svg.style.top = '20px';
 				svg.addEventListener( 'click', function () {
 
 					currentSession.end();
 
 				} );
+
+				const svg = document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
+				svg.setAttribute( 'width', 38 );
+				svg.setAttribute( 'height', 38 );
+				svg.style.position = 'absolute';
+				svg.style.right = '20px';
+				svg.style.top = '20px';
+				svg.addEventListener( 'click', function () {
 				overlay.appendChild( svg );
+
+				} );
 
 				const path = document.createElementNS( 'http://www.w3.org/2000/svg', 'path' );
 				path.setAttribute( 'd', 'M 12,12 L 28,28 M 28,12 12,28' );
@@ -144,9 +154,9 @@ class ARButton {
 		}
 
 		function stylizeElement( element ) {
-	
+
 			element.style.position = 'absolute';
-			element.style.bottom = '30px';
+			element.style.bottom = '150px';
 			element.style.padding = '12px 6px';
 			element.style.border = '1px solid #fff';
 			element.style.borderRadius = '20px';
