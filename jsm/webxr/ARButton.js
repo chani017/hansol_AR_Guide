@@ -12,12 +12,12 @@ class ARButton {
 				overlay.style.display = 'none';
 				document.body.appendChild( overlay );
 
-				const svg = document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
+				const svg = document.createElementNS( '.assets/icons/arrow-left-solid.svg', 'svg' );
 				svg.setAttribute( 'width', 38 );
 				svg.setAttribute( 'height', 38 );
 				svg.style.position = 'absolute';
-				svg.style.left = '20px';
-				svg.style.top = '20px';
+				svg.style.left = '25px';
+				svg.style.top = '25px';
 				svg.addEventListener( 'click', function () {
 
 					currentSession.end();
