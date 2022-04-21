@@ -145,7 +145,7 @@ class ARButton {
 		function stylizeElement( element ) {
 
 			element.style.position = 'absolute';
-			element.style.bottom = '150px';
+			element.style.bottom = '23px';
 			element.style.padding = '12px 6px';
 			element.style.border = '1px solid #fff';
 			element.style.borderRadius = '20px';
