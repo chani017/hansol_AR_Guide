@@ -144,7 +144,7 @@ class ARButton {
 		}
 
 		function stylizeElement( element ) {
-
+	
 			element.style.position = 'absolute';
 			element.style.bottom = '30px';
 			element.style.padding = '12px 6px';
