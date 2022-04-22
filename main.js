@@ -87,7 +87,7 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
                 model.rotation.y = 5;
-                model.scale.set(0.02, 0.02, 0.02);
+                model.scale.set(0.01, 0.01, 0.01);
                 model.receiveShadow = true;
                 model.add( Audio );
                 scene.add(model);
