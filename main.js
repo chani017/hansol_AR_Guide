@@ -69,12 +69,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         function onSelect() {
 
             if ( reticle.visible ) {
-                reticle.matrix.decompose( model.position, model.quaternion, model.scale );
-                model.rotation.y = 5;
-                model.scale.set(0.01, 0.01, 0.01);
-                model.receiveShadow = true;
-                scene.add(model);
-
                 const AudioListener = new THREE.AudioListener();
                 camera.add(AudioListener);
             
@@ -87,8 +81,14 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
                         Audio.setBuffer( buffer );
                         Audio.setLoop( true );
                         Audio.setVolume( 1.0 );
-                        model.add( Audio );
                         Audio.play();
+
+                reticle.matrix.decompose( model.position, model.quaternion, model.scale );
+                model.rotation.y = 5;
+                model.scale.set(0.005, 0.005, 0.005);
+                model.receiveShadow = true;
+                model.add( Audio );
+                scene.add(model);
                     }
                 )
             }
