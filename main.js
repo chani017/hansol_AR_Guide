@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { ARButton } from './jsm/webxr/ARButton.js';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
+import { Audio } from 'three';
 
     let container;
     let camera, scene, renderer;
@@ -75,13 +76,26 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
                 const Audio = new THREE.PositionalAudio( AudioListener );
             
                 const AudioLoader = new THREE.AudioLoader();
-                AudioLoader.load(
-                    './assets/sounds/jazz.mp3',
+                const AudioUrl = './assets/sounds/jazz.mp3';
+
+                AudioLoader.load( AudioUrl,
                     function( buffer ) {
                         Audio.setBuffer( buffer );
                         Audio.setLoop( true );
                         Audio.setVolume( 1.0 );
+
+                        document.getElementById("btn").innerText = "음악재생 클릭";
+                        document.getElementById("btn").addEventListener("click", soundon, false);
+                        },
+                
+                    function soundon(){
                         Audio.play();
+                        document.getElementById("btn").innerHTML = "music by. 장석원_sparkling";
+                        
+                        document.getElementById("btn").removeEventListener("click", soundon, false);
+                        document.getElementById("btn").style.backgroundColor = "rgba(255,255,255,0.3)";
+                        }
+                    )
 
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
                 model.rotation.y = 5;
@@ -89,8 +103,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
                 model.receiveShadow = true;
                 model.add( Audio );
                 scene.add(model);
-                    }
-                )
             }
         }
 
