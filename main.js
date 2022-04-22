@@ -22,9 +22,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         scene = new THREE.Scene();
 
         camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
-
-        const light = new THREE.AmbientLight( 0xffffff, 1 );
-        scene.add( light );
         
         const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
         hemiLight.position.set( 0, 20, 0 );
@@ -82,13 +79,15 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
                         Audio.setBuffer( buffer );
                         Audio.setLoop( true );
                         Audio.setVolume( 1.0 );
+
+                        Audio.cuttentTime = 0
                         Audio.play();
                         }
                     )
 
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
                 model.rotation.y = 0.1;
-                model.scale.set(1, 1, 1);
+                model.scale.set(0.3, 0.3, 0.3);
                 model.receiveShadow = true;
                 model.add( Audio );
                 scene.add(model);
