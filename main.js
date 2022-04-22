@@ -46,6 +46,7 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.shadowMap.enabled = true;
         renderer.xr.enabled = true;
         container.appendChild( renderer.domElement );
 
@@ -65,30 +66,31 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
             }
         );
 
-        const AudioListener = new THREE.AudioListener();
-        camera.add(AudioListener);
-    
-        const Audio = new THREE.PositionalAudio( AudioListener );
-    
-        const AudioLoader = new THREE.AudioLoader();
-        AudioLoader.load(
-            './sounds/jazz.mp3',
-            function( buffer ) {
-                Audio.setBuffer( buffer );
-                Audio.setLoop( true );
-                Audio.setVolume( 1.0 );
-                model.add( Audio );
-                Audio.play();
-            }
-        )    
-
         function onSelect() {
 
             if ( reticle.visible ) {
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
                 model.rotation.y = 5;
                 model.scale.set(0.01, 0.01, 0.01);
+                model.receiveShadow = true;
                 scene.add(model);
+
+                const AudioListener = new THREE.AudioListener();
+                camera.add(AudioListener);
+            
+                const Audio = new THREE.PositionalAudio( AudioListener );
+            
+                const AudioLoader = new THREE.AudioLoader();
+                AudioLoader.load(
+                    './assets/sounds/jazz.mp3',
+                    function( buffer ) {
+                        Audio.setBuffer( buffer );
+                        Audio.setLoop( true );
+                        Audio.setVolume( 1.0 );
+                        model.add( Audio );
+                        Audio.play();
+                    }
+                )
             }
         }
 
@@ -97,7 +99,7 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         scene.add( controller );
 
         reticle = new THREE.Mesh(
-            new THREE.RingGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
+            new THREE.RingGeometry( 0.15, 0.2, 64 ).rotateX( - Math.PI / 2 ),
             new THREE.MeshBasicMaterial()
         );
         reticle.matrixAutoUpdate = false;
