@@ -23,8 +23,23 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
         camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 20 );
 
-        const light = new THREE.AmbientLight(0xffffff, 5);
-        scene.add(light);
+        const light = new THREE.AmbientLight( 0xffffff, 1 );
+        scene.add( light );
+        
+        const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+        hemiLight.position.set( 0, 20, 0 );
+        scene.add( hemiLight );
+
+        const dirLight = new THREE.DirectionalLight( 0xffffff );
+        dirLight.position.set( - 3, 10, 10 );
+        dirLight.castShadow = true;
+        dirLight.shadow.camera.top = 2;
+        dirLight.shadow.camera.bottom = - 2;
+        dirLight.shadow.camera.left = - 2;
+        dirLight.shadow.camera.right = 2;
+        dirLight.shadow.camera.near = 0.1;
+        dirLight.shadow.camera.far = 40;
+        scene.add( dirLight );
 
         //
 
@@ -54,8 +69,8 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 
             if ( reticle.visible ) {
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
-                model.rotation.y = Math.PI / 2;
-                model.scale.set(0.3, 0.3, 0.3);
+                model.rotation.y = 5;
+                model.scale.set(0.05, 0.05, 0.05);
                 scene.add(model);
             }
         }
@@ -88,22 +103,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
     }
 
     //
-
-        // create an AudioListener and add it to the camera
-        const listener = new THREE.AudioListener();
-        camera.add( listener );
-    
-        // create a global audio source
-        const sound = new THREE.Audio( listener );
-    
-        // load a sound and set it as the Audio object's buffer
-        const audioLoader = new THREE.AudioLoader();
-        audioLoader.load( './sounds/jazz.mp3', function( buffer ) {
-            sound.setBuffer( buffer );
-            sound.setLoop( true );
-            sound.setVolume( 0.5 );
-            sound.play();
-        });
 
     function animate() {
 
