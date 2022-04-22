@@ -53,7 +53,7 @@ class ARButton {
 
 				await renderer.xr.setSession( session );
 
-				button.textContent = 'STOP AR';
+				button.textContent = 'AR 멈추기';
 				sessionInit.domOverlay.root.style.display = '';
 
 				currentSession = session;
@@ -128,7 +128,7 @@ class ARButton {
 
 			disableButton();
 
-			button.textContent = 'AR NOT SUPPORTED';
+			button.textContent = 'AR을 지원하지 않습니다.';
 
 		}
 
@@ -138,7 +138,7 @@ class ARButton {
 
 			console.warn( 'Exception when trying to call xr.isSessionSupported', exception );
 
-			button.textContent = 'AR NOT ALLOWED';
+			button.textContent = 'AR을 시작할 수 없습니다.';
 
 		}
 
