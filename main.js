@@ -65,6 +65,23 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
             }
         );
 
+        const AudioListener = new THREE.AudioListener();
+        camera.add(AudioListener);
+    
+        const Audio = new THREE.PositionalAudio( AudioListener );
+    
+        const AudioLoader = new THREE.AudioLoader();
+        AudioLoader.load(
+            './sounds/jazz.mp3',
+            function( buffer ) {
+                Audio.setBuffer( buffer );
+                Audio.setLoop( true );
+                Audio.setVolume( 1.0 );
+                model.add( Audio );
+                Audio.play();
+            }
+        )    
+
         function onSelect() {
 
             if ( reticle.visible ) {
@@ -92,23 +109,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         window.addEventListener( 'resize', onWindowResize );
 
     }
-
-    const AudioListener = new THREE.AudioListener();
-    camera.add(AudioListener);
-
-    const Audio = new THREE.PositionalAudio( AudioListener );
-
-    const AudioLoader = new THREE.AudioLoader();
-    AudioLoader.load(
-        './sounds/jazz.mp3',
-        function( buffer ) {
-            Audio.setBuffer( buffer );
-            Audio.setLoop( true );
-            Audio.setVolume( 1.0 );
-            model.add( Audio );
-            Audio.play();
-        }
-    )
 
     function onWindowResize() {
 
