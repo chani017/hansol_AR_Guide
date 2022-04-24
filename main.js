@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { ARButton } from './jsm/webxr/ARButton.js';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
+import { ARButton } from './jsm/webxr/ARButton.js';
 
     let container;
     let camera, scene, renderer;
@@ -79,8 +79,6 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
                         Audio.setBuffer( buffer );
                         Audio.setLoop( true );
                         Audio.setVolume( 1.0 );
-
-                        Audio.cuttentTime = 0
                         Audio.play();
                         }
                     )
@@ -120,7 +118,7 @@ import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
         renderer.setSize( window.innerWidth, window.innerHeight );
 
     }
-
+ 
     //
 
     function animate() {
