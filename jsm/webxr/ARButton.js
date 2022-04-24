@@ -44,18 +44,6 @@ class ARButton {
 
 			//
 
-			const images = ["0.jpeg", "1.jpg", "view.png"];
-
-			const chosenImage = images[Math.floor(Math.random() * images.length)];
-
-			const bgImage = document.createElement("img");
-
-			bgImage.src = '.assets/images/${chosenImage}';
-
-			document.body.appendChild(bgImage);
-
-			//
-
 			let currentSession = null;
 
 			async function onSessionStarted( session ) {
