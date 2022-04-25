@@ -66,26 +66,9 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         function onSelect() {
 
             if ( reticle.visible ) {
-                const AudioListener = new THREE.AudioListener();
-                camera.add(AudioListener);
-            
-                const Audio = new THREE.PositionalAudio( AudioListener );
-            
-                const AudioLoader = new THREE.AudioLoader();
-                const AudioUrl = './assets/sounds/jazz.mp3';
-
-                AudioLoader.load( AudioUrl,
-                    function( buffer ) {
-                        Audio.setBuffer( buffer );
-                        Audio.setLoop( true );
-                        Audio.setVolume( 1.0 );
-                        Audio.play();
-                        }
-                    )
-
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
-                model.rotation.y = 5;
-                model.scale.set(0.01, 0.01, 0.01);
+                model.rotation.y = 1;
+                model.scale.set(1, 1, 1);
                 model.receiveShadow = true;
                 model.add( Audio );
                 scene.add(model);
