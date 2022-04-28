@@ -52,7 +52,7 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         document.body.appendChild( ARButton.createButton( renderer ) );
 
         //
-
+        
         const gltfLoader = new GLTFLoader();
         const url = './assets/models/scene.gltf';
         var model = new THREE.Object3D();
@@ -64,34 +64,13 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         );
 
         function onSelect() {
-
-            const panorama = new PANOLENS.ImagePanorama( './assets/room.png' );
-            const viewer = new PANOLENS.Viewer();
             
-            const AudioListener = new THREE.AudioListener();
-            camera.add(AudioListener);
-
-            const Audio = new THREE.PositionalAudio( AudioListener );
-
-            const AudioLoader = new THREE.AudioLoader();
-            const AudioUrl = './assets/sounds/jazz.mp3';
-
-            AudioLoader.load( AudioUrl,
-                function( buffer ) {
-                    Audio.setBuffer( buffer );
-                    Audio.setLoop( true );
-                    Audio.setVolume( 1.0 );
-                    }
-                )
-
             if ( reticle.visible ) {
                 reticle.matrix.decompose( model.position, model.quaternion, model.scale );
-                model.rotation.y = 1;
+                model.rotation.y = 1.6; //portal: 1.6
                 model.scale.set(1, 1, 1);
                 model.receiveShadow = true;
-                model.add( Audio );
                 scene.add(model);
-                viewer.add( panorama );
             }
         }
 
