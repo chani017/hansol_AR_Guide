@@ -64,6 +64,9 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         );
 
         function onSelect() {
+
+            const panorama = new PANOLENS.ImagePanorama( './assets/room.png' );
+            const viewer = new PANOLENS.Viewer();
             
             const AudioListener = new THREE.AudioListener();
             camera.add(AudioListener);
@@ -88,6 +91,7 @@ import { ARButton } from './jsm/webxr/ARButton.js';
                 model.receiveShadow = true;
                 model.add( Audio );
                 scene.add(model);
+                viewer.add( panorama );
             }
         }
 
