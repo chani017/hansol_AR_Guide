@@ -54,7 +54,7 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         //
         
         const gltfLoader = new GLTFLoader();
-        const url = './assets/models/scene.gltf';
+        const url = './assets/models/portal.gltf';
         var model = new THREE.Object3D();
 
         gltfLoader.load( url, ( gltf ) => {
