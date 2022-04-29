@@ -4,17 +4,17 @@ import { ARButton } from './jsm/webxr/ARButton.js';
 
     let container;
     let camera, scene, renderer;
-    let controller;
+    let controller, reticle;
 
-    let reticle;
-
+    let xrSession = null;
+    var xrViewPose;
     let hitTestSource = null;
     let hitTestSourceRequested = false;
 
     init();
     animate();
 
-    function init() {
+    function init() { //스크립트 실행 시작
 
         container = document.createElement( 'div' );
         document.body.appendChild( container );
@@ -52,7 +52,7 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         document.body.appendChild( ARButton.createButton( renderer ) );
 
         //
-        
+
         const gltfLoader = new GLTFLoader();
         const url = './assets/models/portal.gltf';
         var model = new THREE.Object3D();
@@ -103,13 +103,13 @@ import { ARButton } from './jsm/webxr/ARButton.js';
  
     //
 
-    function animate() {
+    function animate() { //애니메이션 루프 시작
 
         renderer.setAnimationLoop( render );
 
     }
 
-    function render( timestamp, frame ) {
+    function render( timestamp, frame ) { // GPU에 그리기 명령 실행
 
         if ( frame ) {
 
