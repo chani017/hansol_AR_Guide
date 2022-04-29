@@ -6,8 +6,6 @@ import { ARButton } from './jsm/webxr/ARButton.js';
     let camera, scene, renderer;
     let controller, reticle;
 
-    let xrSession = null;
-    var xrViewPose;
     let hitTestSource = null;
     let hitTestSourceRequested = false;
 
