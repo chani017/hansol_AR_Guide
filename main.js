@@ -161,12 +161,3 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         renderer.render( scene, camera );
 
     }
-
-    function isSameAsLocation(uriString) {
-        const uri = new URL(uriString);
-    
-        return (
-            uri.origin === window.location.origin &&
-            uri.pathname === window.location.pathname
-        );
-    }
