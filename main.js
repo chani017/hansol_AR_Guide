@@ -1,10 +1,13 @@
 import * as THREE from 'three';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 import { ARButton } from './jsm/webxr/ARButton.js';
+import { Cursor } from './Cursor.js'
 
     let container;
     let camera, scene, renderer;
-    let controller, reticle;
+    let controller;
+    
+    let reticle;
 
     let hitTestSource = null;
     let hitTestSourceRequested = false;
@@ -76,14 +79,8 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         controller.addEventListener( 'select', onSelect );
         scene.add( controller );
 
-        reticle = new THREE.Mesh(
-            new THREE.RingGeometry( 0.15, 0.2, 64 ).rotateX( - Math.PI / 2 ),
-            new THREE.MeshBasicMaterial()
-        );
-        reticle.matrixAutoUpdate = false;
-        reticle.visible = false;
+        reticle = new Cursor();
         scene.add( reticle );
-
         //
 
         window.addEventListener( 'resize', onWindowResize );
@@ -145,12 +142,12 @@ import { ARButton } from './jsm/webxr/ARButton.js';
 
                     const hit = hitTestResults[ 0 ];
 
-                    reticle.visible = true;
-                    reticle.matrix.fromArray( hit.getPose( referenceSpace ).transform.matrix );
+                    Cursor.visible = true;
+                    Cursor.matrix.fromArray( hit.getPose( referenceSpace ).transform.matrix );
 
                 } else {
 
-                    reticle.visible = false;
+                    Cursor.visible = false;
 
                 }
 
