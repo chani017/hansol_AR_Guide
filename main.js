@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 import { ARButton } from './jsm/webxr/ARButton.js';
-import { Cursor } from './Cursor.js'
 
     let container;
     let camera, scene, renderer;
     let controller;
+    let arButton
     
     let reticle;
 
@@ -50,7 +50,12 @@ import { Cursor } from './Cursor.js'
 
         //
 
-        document.body.appendChild( ARButton.createButton( renderer ) );
+        arButton = ARButton.createButton(renderer, { 
+            requiredFeatures: ['hit-test'],
+            optionalFeatures: ['dom-overlay'],
+            domOverlay: { root: document.getElementById('arOverlay') } 
+        })
+        document.body.appendChild(arButton);
 
         //
 
