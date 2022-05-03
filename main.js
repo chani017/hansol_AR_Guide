@@ -83,9 +83,15 @@ import { ARButton } from './jsm/webxr/ARButton.js';
         controller = renderer.xr.getController( 0 );
         controller.addEventListener( 'select', onSelect );
         scene.add( controller );
-
-        reticle = new Cursor();
+        
+        reticle = new THREE.Mesh(
+            new THREE.RingGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
+            new THREE.MeshBasicMaterial()
+        );
+        reticle.matrixAutoUpdate = false;
+        reticle.visible = false;
         scene.add( reticle );
+        
         //
 
         window.addEventListener( 'resize', onWindowResize );
