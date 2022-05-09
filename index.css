@@ -38,6 +38,46 @@ a{
     text-align: left;
 }
 
+#place-button{
+    position: absolute;
+    bottom: 40px;
+    left: calc(50% - 60px);
+    width: 120px;
+    height: 45px;
+    color: #EE7A39;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    font-family: 'Pretendard';
+    font-weight: 700;
+    font-size: 13px;
+    border: 2px solid #EE7A39;
+    display: none;
+  }
+
+#guide{
+    position: absolute;
+    top: 60px;
+    left: calc(50% - 60px);
+    width: 80px;
+    height: 35px;
+    color: #EE7A39;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    font-family: 'Pretendard';
+    font-weight: 700;
+    display: none;
+    text-align: center;
+}
+
+#guide-msg{
+    position: absolute;
+    top: 80px;
+    left: calc(50% - 60px);
+    font-family: 'Pretendard';
+    font-weight: 700;
+    display: none;
+}
+
 footer{
     color: #FFFFFF;
     font-family: 'Pretendard';
