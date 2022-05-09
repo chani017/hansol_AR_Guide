@@ -66,7 +66,7 @@ function init() { //스크립트 실행 시작
     //
     
     const gltfLoader = new GLTFLoader();
-    const url = './assets/models/scene.gltf';
+    const url = './assets/models/portal.gltf';
     var model = new THREE.Object3D();
 
     gltfLoader.load(url, (gltf) => {
@@ -84,33 +84,17 @@ function init() { //스크립트 실행 시작
         }
     }
 
-<<<<<<< HEAD
-    controller = renderer.xr.getController(0);
-    controller.addEventListener('select', click);
-    scene.add(controller);
-
+    controller = renderer.xr.getController( 0 );
+    controller.addEventListener( 'click', click );
+    scene.add( controller );
+    
     reticle = new THREE.Mesh(
-        new THREE.RingGeometry(0.15, 0.2, 64).rotateX(- Math.PI / 2),
+        new THREE.RingGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
         new THREE.MeshBasicMaterial()
     );
     reticle.matrixAutoUpdate = false;
     reticle.visible = false;
-    scene.add(reticle);
-=======
-        controller = renderer.xr.getController( 0 );
-        controller.addEventListener( 'select', onSelect );
-        scene.add( controller );
-        
-        reticle = new THREE.Mesh(
-            new THREE.RingGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
-            new THREE.MeshBasicMaterial()
-        );
-        reticle.matrixAutoUpdate = false;
-        reticle.visible = false;
-        scene.add( reticle );
-        
-        //
->>>>>>> refs/remotes/origin/main
+    scene.add( reticle );
 
     //
 
@@ -194,9 +178,4 @@ function render(timestamp, frame) {
     }
 
     renderer.render(scene, camera);
-
-<<<<<<< HEAD
 }
-=======
-    }
->>>>>>> refs/remotes/origin/main
