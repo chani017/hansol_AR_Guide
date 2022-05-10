@@ -37,10 +37,12 @@ function init() { //스크립트 실행 시작
     spotLight = new THREE.SpotLight(color, PARAMS.intensity, PARAMS.distance, PARAMS.angle);
     spotLight.position.set(PARAMS.x, PARAMS.y, PARAMS.z);
     scene.add(spotLight);
+    
+    spotLight.castShadow = true; 
 
-    //
-
-    spotLight.castShadow = true;
+    const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 5);
+    hemiLight.position.set( 0, 20, 0 );
+    scene.add( hemiLight );
 
     //
 
@@ -48,7 +50,6 @@ function init() { //스크립트 실행 시작
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.xr.enabled = true;
     container.appendChild(renderer.domElement);
 
@@ -66,7 +67,7 @@ function init() { //스크립트 실행 시작
     //
     
     const gltfLoader = new GLTFLoader();
-    const url = './assets/models/portal.gltf';
+    const url = './assets/models/scene.gltf';
     var model = new THREE.Object3D();
 
     gltfLoader.load(url, (gltf) => {
@@ -74,22 +75,22 @@ function init() { //스크립트 실행 시작
         model.name = "model";
     }); 
 
-    function click() {
+    function onSelect() {
         if (reticle.visible) {
             reticle.matrix.decompose(model.position, model.quaternion, model.scale);
-            model.rotation.y = 1; //portal: 1.6
-            model.scale.set(10, 10, 10);
+            model.rotation.y = 1.6; //portal: 1.6
+            model.scale.set(0.001, 0.001, 0.001);
             model.receiveShadow = true;
             scene.add(model);
         }
     }
 
     controller = renderer.xr.getController( 0 );
-    controller.addEventListener( 'click', click );
+    controller.addEventListener( 'select', onSelect );
     scene.add( controller );
     
     reticle = new THREE.Mesh(
-        new THREE.RingGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
+        new THREE.RingGeometry( 0.15, 0.2, 64 ).rotateX( - Math.PI / 2 ),
         new THREE.MeshBasicMaterial()
     );
     reticle.matrixAutoUpdate = false;
