@@ -67,19 +67,22 @@ function init() { //스크립트 실행 시작
     //
     
     const gltfLoader = new GLTFLoader();
-    const url = './assets/models/scene.gltf';
+    const url = './assets/models/hansol.glb';
     var model = new THREE.Object3D();
 
-    gltfLoader.load(url, (gltf) => {
-        model = gltf.scene;
-        model.name = "model";
-    }); 
+    gltfLoader.load(url, (glb) => {
+        const model = glb.scene;
+        
+        mixer = new THREE.AnimationMixer( model );
+		var action = mixer.clipAction( gltf.animations[ 0 ] );
+		action.play();
+    });
 
     function onSelect() {
         if (reticle.visible) {
             reticle.matrix.decompose(model.position, model.quaternion, model.scale);
             model.rotation.y = 1.6; //portal: 1.6
-            model.scale.set(0.001, 0.001, 0.001);
+            model.scale.set(0.01, 0.01, 0.01);
             model.receiveShadow = true;
             scene.add(model);
         }
@@ -117,6 +120,16 @@ function onWindowResize() {
 function animate() {
 
     renderer.setAnimationLoop(render);
+    
+    requestAnimationFrame( animate );
+
+	var delta = clock.getDelta();
+
+	if ( mixer ) mixer.update( delta );
+
+	renderer.render( scene, camera );
+
+	stats.update();
 
 }
 
